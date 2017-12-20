@@ -65,13 +65,22 @@ topMoviesRatingsRDD = topMoviesRatingsRDD.map(lambda movieRating: (movieRating[1
 print "Top 10"
 print topMoviesRatingsRDD.take(10)
 
+def top10(tuple):
+    ret = ""
+    tupleList = list(tuple[1])
+
+    for i in range(0, 10):
+        ret += tupleList[i] + "\n"
+
+    return str(tuple[0]) + "\n" + ret
 
 timestampRDD = timestampRDD.map(lambda timestamp: timestamp.split(";"))
 ratingTimestampRDD = timestampRDD.map(lambda timestamp: (timestamp[1], str(timestamp[2]) + ";" + str(datetime.datetime.fromtimestamp(int(timestamp[3])).month)))
 moviesRatingTimestampRDD = ratingTimestampRDD.join(topMoviesRatingsIdsRDD)
-moviesRatingTimestampRDD = moviesRatingTimestampRDD.map(lambda movie: (movie[1][0].split(";")[1], movie[1][1]))
+moviesRatingTimestampRDD = moviesRatingTimestampRDD.map(lambda movie: (int(movie[1][0].split(";")[1]), movie[1][1]))
 moviesRatingTimestampRDD = moviesRatingTimestampRDD.groupByKey()
 moviesRatingTimestampRDD = moviesRatingTimestampRDD.sortByKey()
+moviesRatingTimestampRDD = moviesRatingTimestampRDD.map(top10)
 #movieRatingTimestampRDD = ratingTimestampRDD.join(movieTimestampRDD)
 #movieRatingTimestampRDD = movieTimestampRDD.groupByKey()
 #movieRatingTimestampRDD = movieRatingTimestampRDD.sortByKey()
