@@ -3,6 +3,6 @@
 import sys
 
 for line in sys.stdin:
-    split = line.split(";")
+    split = line.split(",")
 
-    print "{};{}".format(int(split[0]), split[1].replace('\n', '').replace('\r', '').replace(' ', ''))
+    print "{};{}".format(int(split[1]), float(split[2].replace('\n', '').replace('\r', '').replace(' ', '')))

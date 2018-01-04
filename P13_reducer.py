@@ -17,7 +17,7 @@ for line in sys.stdin:
         sum = 0
         count = 0
     
-    sum = sum + int( value )
+    sum = sum + float( value )
     count += 1
 
 print previous + '\t' + str(float(sum) / count)
