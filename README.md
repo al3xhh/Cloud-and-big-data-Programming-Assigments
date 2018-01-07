@@ -18,6 +18,8 @@
     </ul>
   <p align="justify">The job should have two MapReduce phases. The output of the first phase should be the movies and their average rating. The output of the second phase should be ranges and the title of the movies.</p></li>
 </ul>
+  <li><p align="justify">Pig and Hive are higher-level abstractions of MapReduce. They provide an interface that has nothing to do with “map” or “reduce,” but the systems interpret the higher-level language into a series of MapReduce jobs. Much like how a query planner in an RDBMS translates SQL into actual operations on data, Hive and Pig translate their respective languages into MapReduce operations.
+Discuss in detail how these two tools could be used to simplify the development of the “Movie Rating Data” exercise.</p></li>
 
 <h2>Spark</h2>
 
