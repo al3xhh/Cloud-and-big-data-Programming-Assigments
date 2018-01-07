@@ -47,3 +47,13 @@ Discuss in detail how these two tools could be used to simplify the development 
   </p></li>
   </ul>
 </ul>
+
+<h2>P3. Meteorite Landing</h2>
+<p align="justify">
+The NASA’s Open Data Portal hosts a comprehensive data set from The Meteoritical Society that contains information on all of the known meteorite landings. The Table consists of 34,513 meteorites and includes fields like the type of meteorite, the mass and the year.
+https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh
+Write a MapReduce job and a Spark script to calculate the average mass per year of a type of meteorite specified as an argument.</p>
+
+<h2>P4. Distributed Markov Shakespeare</h2>
+<p align="justify">In this exercise we will explore the application of function compositions, narrow and wide dependencies and stages in the DAG parallelism for a slightly involved distributed computation to gain further insights into this programming approach.
+The task is to build a simple statistical language model for the writing style of Shakespeare. Your model should be a simple Markov Chain of order 2. You will use that model to generate novel sentences based on Shakespeare’s original texts.</p>
