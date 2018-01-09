@@ -2,7 +2,12 @@
 
 import sys
 
-for line in sys.stdin:
-    url = line.split(" ")[6]
+firstLine = True
 
-    print url + "\t1"
+for line in sys.stdin:
+    if not firstLine:
+        url = line.split(" ")[6]
+
+        print url + "\t1"
+    else:
+        firstLine = False

@@ -3,6 +3,8 @@
 import sys
 from pyspark import SparkContext
 
+firstLine = True
+
 def rating(avgRating):
     if avgRating <= 1:
         return "1"
@@ -15,9 +17,20 @@ def rating(avgRating):
     else:
         return "5"
 
+def firstLineFun():
+    global firstLine
+    
+    if firstLine:
+        firstLine = False
+        return True
+    else:
+        return False
+
 sc = SparkContext()
 ratingsRDD = sc.textFile("../Data/P14_ratings_data.csv")
 moviesRDD = sc.textFile("../Data/P14_movies_data.csv")
+ratingsRDD = ratingsRDD.filter(lambda rating: not firstLineFun())
+moviesRDD = moviesRDD.filter(lambda movie: not firstLineFun())
 ratingsRDD = ratingsRDD.map(lambda rating: rating.split(","))
 ratingsRDD = ratingsRDD.map(lambda rating: (rating[1], float(rating[2])))
 moviesRDD = moviesRDD.map(lambda movie: movie.split(","))

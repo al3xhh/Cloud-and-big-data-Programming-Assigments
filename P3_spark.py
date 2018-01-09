@@ -3,9 +3,21 @@
 import sys
 from pyspark import SparkContext
 
+firstLine = True
+
+def firstLineFun():
+    global firstLine
+    
+    if firstLine:
+        firstLine = False
+        return True
+    else:
+        return False
+
 if len(sys.argv) > 1:
     sc = SparkContext()
     meteoriteRDD = sc.textFile("../Data/P3_data.csv")
+    meteoriteRDD = meteoriteRDD.filter(lambda rating: not firstLineFun())
     meteoriteType = sys.argv[1]
     meteoriteRDD = meteoriteRDD.map(lambda meteorite: meteorite.split(","))
     meteoriteRDD = meteoriteRDD.filter(lambda meteorite: meteoriteType == meteorite[3])

@@ -3,6 +3,8 @@
 import sys
 import mmap
 
+firstLine = True
+
 def findTitle(id):
     with open('../Data/P14_movies_data.csv', 'r') as inF:
         for line in inF:
@@ -10,6 +12,9 @@ def findTitle(id):
                 return line.split(",")[1]
 
 for line in sys.stdin:
-    split = line.split(";")
+    if not firstLine:
+        split = line.split(";")
 
-    print str(findTitle(split[0])).strip() + ";" + split[1].strip()
+        print str(findTitle(split[0])).strip() + ";" + split[1].strip()
+    else:
+        firstLine = False
